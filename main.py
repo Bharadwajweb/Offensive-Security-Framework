@@ -1,6 +1,7 @@
 from modules.recon import recon
 from modules.portscan import port_scan
 from modules.directory_scan import directory_scan
+from modules.web_fingerprint import web_fingerprint
 
 print("=" * 60)
 print("OFFENSIVE SECURITY AUTOMATION FRAMEWORK")
@@ -27,6 +28,10 @@ if ip:
     )
 
     directory_scan(
+        target
+    )
+
+    web_fingerprint(
         target
     )
 
