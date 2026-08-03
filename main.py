@@ -1,5 +1,6 @@
 from modules.recon import recon
 from modules.portscan import port_scan
+from modules.directory_scan import directory_scan
 
 print("=" * 60)
 print("OFFENSIVE SECURITY AUTOMATION FRAMEWORK")
@@ -24,3 +25,9 @@ if ip:
         start_port,
         end_port
     )
+
+    directory_scan(
+        target
+    )
+
+print("\nScan Completed.")

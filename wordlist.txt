@@ -1,0 +1,9 @@
+/admin
+/login
+/dashboard
+/uploads
+/backup
+/config
+/api
+/images
+/assets
