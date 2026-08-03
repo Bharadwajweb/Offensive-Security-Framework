@@ -14,16 +14,12 @@ def grab_banner(ip, port):
     try:
 
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
         s.settimeout(1)
 
         s.connect((ip, port))
 
         if port == 80:
-
-            s.send(
-                b"HEAD / HTTP/1.1\r\nHost: localhost\r\n\r\n"
-            )
+            s.send(b"HEAD / HTTP/1.1\r\nHost: localhost\r\n\r\n")
 
         banner = s.recv(1024)
 
@@ -83,6 +79,8 @@ def port_scan(target_ip, start_port, end_port):
     print("\n" + "=" * 60)
     print("PORT SCANNING MODULE")
     print("=" * 60)
+
+    open_ports.clear()
 
     threads = []
 
