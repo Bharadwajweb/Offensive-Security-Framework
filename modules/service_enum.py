@@ -1,8 +1,8 @@
-from modules.cve_lookup import lookup_cves
 from datetime import datetime
 import os
+from modules.cve_lookup import lookup_cves
 
-def service_enum(ip, open_ports):
+def service_enum(open_ports):
 
     print("\n" + "=" * 60)
     print("SERVICE ENUMERATION MODULE")
@@ -15,13 +15,16 @@ def service_enum(ip, open_ports):
         print(f"\nPort : {port}")
         print(f"Service : {service}")
         print(f"Banner : {banner}")
+
         cves = lookup_cves(banner)
 
         for cve, severity in cves:
             print(f"[{severity}] {cve}")
 
         findings.append(
-            f"Port: {port}\nService: {service}\nBanner: {banner}\n"
+            f"Port: {port}\n"
+            f"Service: {service}\n"
+            f"Banner: {banner}\n"
         )
 
     os.makedirs("outputs", exist_ok=True)
