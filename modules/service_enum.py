@@ -1,4 +1,4 @@
-import socket
+from modules.cve_lookup import lookup_cves
 from datetime import datetime
 import os
 
@@ -15,6 +15,10 @@ def service_enum(ip, open_ports):
         print(f"\nPort : {port}")
         print(f"Service : {service}")
         print(f"Banner : {banner}")
+        cves = lookup_cves(banner)
+
+        for cve, severity in cves:
+            print(f"[{severity}] {cve}")
 
         findings.append(
             f"Port: {port}\nService: {service}\nBanner: {banner}\n"

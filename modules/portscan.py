@@ -12,33 +12,40 @@ lock = threading.Lock()
 def grab_banner(ip, port):
 
     try:
-
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.settimeout(1)
+        s.settimeout(2)
 
         s.connect((ip, port))
 
         if port == 80:
-            s.send(b"HEAD / HTTP/1.1\r\nHost: localhost\r\n\r\n")
+            s.send(
+                b"HEAD / HTTP/1.1\r\nHost: localhost\r\n\r\n"
+            )
 
         banner = s.recv(1024)
 
         s.close()
 
-        return banner.decode(errors="ignore").strip()
+        return banner.decode(
+            errors="ignore"
+        ).strip()
 
     except:
-
         return "Unknown"
 
 
 def scan_port(target_ip, port):
 
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock = socket.socket(
+        socket.AF_INET,
+        socket.SOCK_STREAM
+    )
 
     sock.settimeout(0.5)
 
-    result = sock.connect_ex((target_ip, port))
+    result = sock.connect_ex(
+        (target_ip, port)
+    )
 
     if result == 0:
 
@@ -48,7 +55,10 @@ def scan_port(target_ip, port):
         except:
             service = "Unknown"
 
-        banner = grab_banner(target_ip, port)
+        banner = grab_banner(
+            target_ip,
+            port
+        )
 
         risk, finding = classify_risk(
             port,
@@ -74,17 +84,26 @@ def scan_port(target_ip, port):
     sock.close()
 
 
-def port_scan(target_ip, start_port, end_port):
+def port_scan(
+    target_ip,
+    start_port,
+    end_port
+):
+
+    global open_ports
+
+    open_ports = []
 
     print("\n" + "=" * 60)
     print("PORT SCANNING MODULE")
     print("=" * 60)
 
-    open_ports.clear()
-
     threads = []
 
-    for port in range(start_port, end_port + 1):
+    for port in range(
+        start_port,
+        end_port + 1
+    ):
 
         t = threading.Thread(
             target=scan_port,
@@ -98,24 +117,31 @@ def port_scan(target_ip, start_port, end_port):
     for t in threads:
         t.join()
 
-    os.makedirs("outputs", exist_ok=True)
+    os.makedirs(
+        "outputs",
+        exist_ok=True
+    )
 
     filename = datetime.now().strftime(
         "outputs/portscan_%Y%m%d_%H%M%S.txt"
     )
 
-    with open(filename, "w", encoding="utf-8") as report:
-
-        report.write("=" * 80 + "\n")
-        report.write("PORT SCAN REPORT\n")
-        report.write("=" * 80 + "\n\n")
+    with open(
+        filename,
+        "w",
+        encoding="utf-8"
+    ) as report:
 
         report.write(
-            "PORT | SERVICE | RISK | FINDING\n"
+            "=" * 80 + "\n"
         )
 
         report.write(
-            "-" * 80 + "\n"
+            "PORT SCAN REPORT\n"
+        )
+
+        report.write(
+            "=" * 80 + "\n\n"
         )
 
         for port, service, banner, risk, finding in sorted(open_ports):

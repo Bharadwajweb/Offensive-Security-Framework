@@ -2,6 +2,8 @@ from datetime import datetime
 import os
 import json
 import csv
+from modules.pdf_report import generate_pdf_report
+
 
 def generate_report(target, ip, open_ports):
 
@@ -34,9 +36,11 @@ def generate_report(target, ip, open_ports):
             "finding": finding
         })
 
+    # JSON Report
     with open(json_file, "w", encoding="utf-8") as f:
         json.dump(report_data, f, indent=4)
 
+    # CSV Report
     with open(csv_file, "w", newline="", encoding="utf-8") as f:
 
         writer = csv.writer(f)
@@ -59,6 +63,7 @@ def generate_report(target, ip, open_ports):
                 finding
             ])
 
+    # HTML Report
     html = f"""
     <html>
     <head>
@@ -125,6 +130,18 @@ def generate_report(target, ip, open_ports):
 
     with open(html_file, "w", encoding="utf-8") as f:
         f.write(html)
+
+    # PDF Report
+    vulnerabilities = []
+
+    for port, service, banner, risk, finding in open_ports:
+        vulnerabilities.append(f"[{risk}] {finding}")
+
+    generate_pdf_report(
+        target,
+        open_ports,
+        vulnerabilities
+    )
 
     print(f"[+] JSON Report Saved : {json_file}")
     print(f"[+] CSV Report Saved  : {csv_file}")

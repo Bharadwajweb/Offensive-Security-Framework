@@ -1,0 +1,12 @@
+Target : scanme.nmap.org
+IP Address : 45.33.32.156
+
+WHOIS Information
+Registrar : DYNADOT LLC
+Creation Date : 1999-01-18 05:00:00+00:00
+
+DNS Records
+No NS Records Found
+
+MX Records
+No MX Records Found

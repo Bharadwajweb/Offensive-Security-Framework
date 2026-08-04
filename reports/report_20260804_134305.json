@@ -1,0 +1,14 @@
+{
+    "target": "scanme.nmap.org",
+    "ip_address": "45.33.32.156",
+    "scan_time": "20260804_134305",
+    "open_ports": [
+        {
+            "port": 80,
+            "service": "http",
+            "banner": "HTTP/1.1 200 OK\r\nDate: Tue, 04 Aug 2026 08:13:00 GMT\r\nServer: Apache/2.4.7 (Ubuntu)\r\nAccept-Ranges: bytes\r\nVary: Accept-Encoding\r\nContent-Type: text/html",
+            "risk": "LOW",
+            "finding": "HTTP Service Detected"
+        }
+    ]
+}
