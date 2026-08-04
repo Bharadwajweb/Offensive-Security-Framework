@@ -26,9 +26,7 @@ def grab_banner(ip, port):
 
         s.close()
 
-        return banner.decode(
-            errors="ignore"
-        ).strip()
+        return banner.decode(errors="ignore").strip()
 
     except:
         return "Unknown"
@@ -132,17 +130,9 @@ def port_scan(
         encoding="utf-8"
     ) as report:
 
-        report.write(
-            "=" * 80 + "\n"
-        )
-
-        report.write(
-            "PORT SCAN REPORT\n"
-        )
-
-        report.write(
-            "=" * 80 + "\n\n"
-        )
+        report.write("=" * 80 + "\n")
+        report.write("PORT SCAN REPORT\n")
+        report.write("=" * 80 + "\n\n")
 
         for port, service, banner, risk, finding in sorted(open_ports):
 

@@ -1,6 +1,9 @@
 from datetime import datetime
 import os
+
 from modules.cve_lookup import lookup_cves
+from modules.os_detection import detect_os
+
 
 def service_enum(open_ports):
 
@@ -16,6 +19,10 @@ def service_enum(open_ports):
         print(f"Service : {service}")
         print(f"Banner : {banner}")
 
+        os_name = detect_os(banner)
+
+        print(f"Operating System : {os_name}")
+
         cves = lookup_cves(banner)
 
         for cve, severity in cves:
@@ -25,6 +32,7 @@ def service_enum(open_ports):
             f"Port: {port}\n"
             f"Service: {service}\n"
             f"Banner: {banner}\n"
+            f"OS: {os_name}\n"
         )
 
     os.makedirs("outputs", exist_ok=True)

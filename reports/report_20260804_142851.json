@@ -1,0 +1,14 @@
+{
+    "target": "scanme.nmap.org",
+    "ip_address": "45.33.32.156",
+    "scan_time": "20260804_142851",
+    "open_ports": [
+        {
+            "port": 22,
+            "service": "ssh",
+            "banner": "SSH-2.0-OpenSSH_6.6.1p1 Ubuntu-2ubuntu2.13",
+            "risk": "MEDIUM",
+            "finding": "SSH Service Detected"
+        }
+    ]
+}
