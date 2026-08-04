@@ -2,6 +2,7 @@ from modules.recon import recon
 from modules.portscan import port_scan
 from modules.directory_scan import directory_scan
 from modules.web_fingerprint import web_fingerprint
+from modules.vulnerability_scan import vulnerability_scan
 
 print("=" * 60)
 print("OFFENSIVE SECURITY AUTOMATION FRAMEWORK")
@@ -21,7 +22,7 @@ if ip:
         input("End Port : ")
     )
 
-    port_scan(
+    open_ports = port_scan(
         ip,
         start_port,
         end_port
@@ -33,6 +34,10 @@ if ip:
 
     web_fingerprint(
         target
+    )
+
+    vulnerability_scan(
+        open_ports
     )
 
 print("\nScan Completed.")
