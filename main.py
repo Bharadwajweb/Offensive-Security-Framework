@@ -1,3 +1,4 @@
+from modules.report_generator import generate_report
 from modules.service_enum import service_enum
 from modules.recon import recon
 from modules.portscan import port_scan
@@ -44,5 +45,9 @@ if ip:
         ip,
         open_ports
     )
-
+    generate_report(
+    target,
+    ip,
+    open_ports
+    )
 print("\nScan Completed.")
