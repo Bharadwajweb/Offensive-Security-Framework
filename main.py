@@ -1,3 +1,4 @@
+from modules.service_enum import service_enum
 from modules.recon import recon
 from modules.portscan import port_scan
 from modules.directory_scan import directory_scan
@@ -37,6 +38,10 @@ if ip:
     )
 
     vulnerability_scan(
+        open_ports
+    )
+    service_enum(
+        ip,
         open_ports
     )
 
