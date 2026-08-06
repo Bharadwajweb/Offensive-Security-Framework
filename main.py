@@ -6,6 +6,7 @@ from modules.web_fingerprint import web_fingerprint
 from modules.vulnerability_scan import vulnerability_scan
 from modules.service_enum import service_enum
 from modules.report_generator import generate_report
+from modules.screenshot_capture import screenshot_capture
 
 print("=" * 60)
 print("OFFENSIVE SECURITY AUTOMATION FRAMEWORK")
@@ -35,8 +36,9 @@ if ip:
     vulnerability_scan(open_ports)
 
     service_enum(open_ports)
-
-    generate_report(
+    screenshot_capture(target)
+    
+generate_report(
         target,
         ip,
         open_ports
