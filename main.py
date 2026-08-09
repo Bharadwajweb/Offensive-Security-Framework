@@ -9,6 +9,7 @@ from modules.report_generator import generate_report
 from modules.screenshot_capture import screenshot_capture
 from modules.technology_detection import technology_detection
 from modules.dashboard import create_dashboard
+from modules.risk_scoring import calculate_risk_score
 
 print("=" * 60)
 print("OFFENSIVE SECURITY AUTOMATION FRAMEWORK")
@@ -34,7 +35,7 @@ if ip:
     subdomain_scan(target)
 
     web_fingerprint(target)
-    
+
     technology_detection(target)
 
     vulnerability_scan(open_ports)
@@ -42,6 +43,16 @@ if ip:
     service_enum(open_ports)
 
     screenshot_capture(target)
+
+    score, level = calculate_risk_score(
+        open_ports
+    )
+
+    print("\n" + "=" * 60)
+    print("RISK SCORING ENGINE")
+    print("=" * 60)
+    print(f"Risk Score : {score}")
+    print(f"Risk Level : {level}")
 
     generate_report(
         target,
