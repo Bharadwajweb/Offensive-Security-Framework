@@ -15,22 +15,14 @@ print("=" * 60)
 print("OFFENSIVE SECURITY AUTOMATION FRAMEWORK")
 print("=" * 60)
 
-with open("targets.txt", "r") as file:
-    targets = [line.strip() for line in file if line.strip()]
+target = input("Enter Target Domain : ")
 
-for target in targets:
+ip = recon(target)
 
-    print("\n" + "=" * 60)
-    print(f"SCANNING TARGET : {target}")
-    print("=" * 60)
+if ip:
 
-    ip = recon(target)
-
-    if not ip:
-        continue
-
-    start_port = 1
-    end_port = 100
+    start_port = int(input("Start Port : "))
+    end_port = int(input("End Port : "))
 
     open_ports = port_scan(
         ip,
@@ -74,6 +66,4 @@ for target in targets:
         open_ports
     )
 
-    print(f"\nCompleted Scan For : {target}")
-
-print("\nAll Target Scans Completed.")
+print("\nScan Completed.")
