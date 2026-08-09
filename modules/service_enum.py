@@ -1,8 +1,41 @@
 from datetime import datetime
 import os
 
-from modules.cve_lookup import lookup_cves
-from modules.os_detection import detect_os
+
+def lookup_cves(banner):
+
+    banner = banner.lower()
+
+    cves = []
+
+    if "openssh" in banner:
+        cves.append(("CVE-2016-0777", "HIGH"))
+        cves.append(("CVE-2015-5600", "MEDIUM"))
+
+    if "apache/2.4.7" in banner:
+        cves.append(("CVE-2021-41773", "HIGH"))
+        cves.append(("CVE-2021-42013", "CRITICAL"))
+
+    return cves
+
+
+def detect_os(banner):
+
+    banner = banner.lower()
+
+    if "ubuntu" in banner:
+        return "Linux (Ubuntu)"
+
+    if "debian" in banner:
+        return "Linux (Debian)"
+
+    if "centos" in banner:
+        return "Linux (CentOS)"
+
+    if "windows" in banner:
+        return "Windows"
+
+    return "Unknown"
 
 
 def service_enum(open_ports):
@@ -17,6 +50,10 @@ def service_enum(open_ports):
 
         print(f"\nPort : {port}")
         print(f"Service : {service}")
+
+        if not banner:
+            banner = "Unknown"
+
         print(f"Banner : {banner}")
 
         os_name = detect_os(banner)
@@ -32,7 +69,7 @@ def service_enum(open_ports):
             f"Port: {port}\n"
             f"Service: {service}\n"
             f"Banner: {banner}\n"
-            f"OS: {os_name}\n"
+            f"Operating System: {os_name}\n"
         )
 
     os.makedirs("outputs", exist_ok=True)

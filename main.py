@@ -8,6 +8,7 @@ from modules.service_enum import service_enum
 from modules.report_generator import generate_report
 from modules.screenshot_capture import screenshot_capture
 from modules.technology_detection import technology_detection
+from modules.dashboard import create_dashboard
 
 print("=" * 60)
 print("OFFENSIVE SECURITY AUTOMATION FRAMEWORK")
@@ -39,9 +40,16 @@ if ip:
     vulnerability_scan(open_ports)
 
     service_enum(open_ports)
+
     screenshot_capture(target)
-    
-generate_report(
+
+    generate_report(
+        target,
+        ip,
+        open_ports
+    )
+
+    create_dashboard(
         target,
         ip,
         open_ports
