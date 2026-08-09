@@ -1,64 +1,26 @@
-\# Offensive Security Automation Framework
+# Offensive Security Automation Framework
 
+## Overview
+A Python-based cybersecurity framework for automated reconnaissance, scanning, enumeration, vulnerability assessment, reporting, and dashboard generation.
 
+## Features
+- Reconnaissance
+- Port Scanning
+- Directory Discovery
+- Subdomain Discovery
+- Web Fingerprinting
+- Technology Detection
+- Vulnerability Scanning
+- Service Enumeration
+- Screenshot Capture
+- Risk Scoring
+- Multi-Target Scanning
+- GUI Interface
+- PDF, JSON, CSV and HTML Reports
 
-\## Features
+## Usage
 
-
-
-\- Reconnaissance
-
-\- Port Scanning
-
-\- Directory Discovery
-
-\- Subdomain Discovery
-
-\- Web Fingerprinting
-
-\- Vulnerability Scanning
-
-\- CVE Lookup
-
-\- Service Enumeration
-
-\- OS Detection
-
-\- PDF Report Generation
-
-\- HTML Dashboard Reports
-
-\- JSON Reports
-
-\- CSV Reports
-
-
-
-\## Technologies Used
-
-
-
-\- Python
-
-\- Socket Programming
-
-\- Multithreading
-
-\- DNS Enumeration
-
-\- WHOIS Lookup
-
-\- ReportLab
-
-\- Git \& GitHub
-
-
-
-\## Usage
-
-
+Run CLI version:
 
 ```bash
-
 python main.py
-
